@@ -1,0 +1,57 @@
+{
+  "name": "@cubie/plugin-jupiter",
+  "version": "0.8.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "description": "Plugin Jupiter: A MAIAR plugin that wraps the jupiter api",
+  "keywords": [
+    "ai",
+    "agent",
+    "framework",
+    "plugin",
+    "x",
+    "twitter"
+  ],
+  "author": "0xSoc <contact@cubie.fun> (https://cubie.fun)",
+  "license": "MIT",
+  "homepage": "https://cubie.fun",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xsoc/plugin-jupiter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/0xsoc/plugin-jupiter/issues"
+  },
+  "scripts": {
+    "build": "pnpm run clean && tsc --project tsconfig.json",
+    "prestart": "pnpm run build",
+    "start": "node dist/app.js",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@maiar-ai/core": "^0.8.0",
+    "axios": "^1.7.9",
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "typescript": "^5.7.3"
+  }
+}
