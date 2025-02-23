@@ -28,10 +28,18 @@ export type LoadJupiterTokenParams = {
   name?: string;
 };
 
+type JupiterTokenLoader =
+  | ((
+      params: LoadJupiterTokenParams
+    ) => Promise<JupiterTokenResponse[] | undefined>)
+  | ((
+      params: LoadJupiterTokenParams
+    ) => Promise<JupiterTokenResponse | undefined>);
+
 export interface PluginJupiterConfig {
   apiKey?: string;
   store?: (tokens: JupiterTokenResponse[]) => Promise<void>;
-  load?: (params: LoadJupiterTokenParams) => Promise<JupiterTokenResponse[]>;
+  load?: JupiterTokenLoader;
 }
 
 export const TokenInfoSchema = z.object({

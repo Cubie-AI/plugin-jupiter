@@ -1,6 +1,6 @@
 # @cubie/plugin-jupiter
 
-This package is part of the [Maiar](https://maiar.dev) ecosystem, designed to work seamlessly with `@maiar-ai/core`.
+This package is part of the [Cubie](https://cubie.fun) plugin repository for the [Maiar][https://maiar.dev] ecosystem, designed to work seamlessly with `@maiar-ai/core`.
 
 ## Documentation
 
@@ -21,13 +21,13 @@ interface PluginJupiterConfig {
 
 ### Required Configuration
 
-All the configurations are optional
+All the configurations fields are optional
 
 ### Optional Configuration
 
-- `apiKey`:
-- `store`:
-- `loader`:
+- `apiKey`: This is your Jupiter x-api-key. Optional (default: '')
+- `store`: A function that accepts a list of `JupiterTokenResponse` objects and stores them in a database or filesystem
+- `loader`: A function that accepts an object `{name?: string, symbol?: string}` that can be used to search the tokens stored by `store()`
 
 ## Plugin Information
 
@@ -47,6 +47,8 @@ For more detailed examples and advanced usage, visit our [documentation](https:/
 First you create a storage/loader functions for the token information. In this example we are mocking up a memory store.
 
 ```typescript
+const memoryStore: JupiterTokenResponse[] = [];
+
 // mock a storage function to store data
 async function storeData(data: JupiterTokenResponse[]) {
   memoryStory.push(...data);
@@ -66,7 +68,11 @@ async function loadData(params: LoadJupiterTokenParams) {
     )
   );
 }
+```
 
+Then you want to initialize your agent runtime, and pass the `storeData()` and `loadData()` methods into the `new PluginJupiter()` call.
+
+```typescript
 import { createRuntime } from "@maiar-ai/core";
 
 // Import providers
@@ -101,4 +107,24 @@ const runtime = createRuntime({
     }),
   ],
 });
+```
+
+Now you can start your agents and test it out.
+
+```typescript
+// Start the runtime if this file is run directly
+if (require.main === module) {
+  console.log("Starting agent...");
+  runtime.start().catch((error) => {
+    console.error("Failed to start agent:", error);
+    process.exit(1);
+  });
+
+  // Handle shutdown gracefully
+  process.on("SIGINT", async () => {
+    console.log("Shutting down agent...");
+    await runtime.stop();
+    process.exit(0);
+  });
+}
 ```

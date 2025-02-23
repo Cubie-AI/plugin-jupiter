@@ -17,11 +17,19 @@ interface JupiterPriceMint {
   type: "derivedPrice";
   price: string;
 }
+
 interface JupiterPriceResponse {
   data: Record<string, JupiterPriceMint>;
   timeTaken: number;
 }
 
+interface JupiterQuoteResponse {
+  inputMint: string;
+  outputMint: string;
+  inAmount: string;
+  outAmount: string;
+  swapMode: string;
+}
 const logger = createLogger("service:jupiter");
 
 export class JupiterService {
@@ -55,29 +63,45 @@ export class JupiterService {
   }
 
   async getQuote(params: JupiterQuoteParams) {
-    let decimals = 9;
+    let inputDecimals = 9;
+    let outputDecimals = 9;
     const { inputMint, outputMint, amount, swapMode } = params;
 
     // get the decimals for the amount. This depends on the swap mode.
     // ExactIn means the amount is the input amount, so we need the decimals of the input mint
     // ExactOut means the amount is the output amount, so we need the decimals of the output mint
     if (swapMode === "ExactOut") {
-      decimals = (await this.getTokenInformation(outputMint)).decimals;
+      inputDecimals = (await this.getTokenInformation(outputMint)).decimals;
+      outputDecimals = (await this.getTokenInformation(inputMint)).decimals;
     } else {
-      decimals = (await this.getTokenInformation(inputMint)).decimals;
+      inputDecimals = (await this.getTokenInformation(inputMint)).decimals;
+      outputDecimals = (await this.getTokenInformation(outputMint)).decimals;
     }
-    const response = await this.service.get("/swap/v1/quote", {
-      params: new URLSearchParams({
-        inputMint: params.inputMint,
-        outputMint: params.outputMint,
-        amount: "" + params.amount * Math.pow(10, decimals),
-        swapMode: params.swapMode,
-      }),
-    });
+
+    const inputAmount = amount * Math.pow(10, inputDecimals);
+    const response = await this.service.get<JupiterQuoteResponse>(
+      "/swap/v1/quote",
+      {
+        params: new URLSearchParams({
+          inputMint: params.inputMint,
+          outputMint: params.outputMint,
+          amount: "" + inputAmount,
+          swapMode: params.swapMode,
+        }),
+      }
+    );
 
     logger.info(`[JupiterService]: got quote result ${response.status}`);
+    const outputAmount =
+      parseFloat(response.data.outAmount) / Math.pow(10, outputDecimals);
 
-    return response.data;
+    return {
+      inputMint,
+      outputMint,
+      inputAmount,
+      outputAmount,
+      swapMode,
+    };
   }
 
   async getTokenInformation(token: string) {
@@ -93,9 +117,12 @@ export class JupiterService {
   }
 
   async getTokenByNameOrSymbol(params: LoadJupiterTokenParams) {
-    let result: JupiterTokenResponse[] | undefined = undefined;
+    let result: JupiterTokenResponse[] | JupiterTokenResponse | undefined =
+      undefined;
+    logger.info("[JupiterService]: loading token by name or symbol");
     if (this.config?.load) {
       result = await this.config.load(params);
+      logger.info(`[JupiterService]: loaded token ${JSON.stringify(result)}`);
     }
 
     return result;

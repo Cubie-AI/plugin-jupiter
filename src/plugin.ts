@@ -1,4 +1,9 @@
-import { AgentContext, createLogger, PluginBase } from "@maiar-ai/core";
+import {
+  AgentContext,
+  createLogger,
+  PluginBase,
+  Runtime,
+} from "@maiar-ai/core";
 import { JupiterService } from "./jupiter";
 import {
   generatePriceTemplate,
@@ -32,7 +37,8 @@ export class PluginJupiter extends PluginBase {
     this.addExecutor({
       name: "get_contract_address",
       description:
-        "Get the contract address of a token when the user provides the token name or symbol",
+        "Get the contract address of a token when the user provides the token name or symbol." +
+        "Always use this method before calling any other method that requires a contract address.",
       execute: async (context: AgentContext) => {
         const params = await this.runtime.operations.getObject(
           ContractAddressInfoSchema,
@@ -124,7 +130,9 @@ export class PluginJupiter extends PluginBase {
     this.addExecutor({
       name: "get_price",
       description:
-        "Get the price of a list of mint address / contract addresses for tokens on solana",
+        "Get the price of a list of mint address / contract addresses for tokens on solana" +
+        "Mint addresses and Contract addresses are between 32-44 characters long." +
+        "If you are supplied with a ticker or token name you should use the get_contract_address method to get the correct address.",
       execute: async (context: AgentContext) => {
         const params = await this.runtime.operations.getObject(
           PriceInfoSchema,
@@ -203,5 +211,10 @@ export class PluginJupiter extends PluginBase {
         };
       },
     });
+  }
+
+  async init(runtime: Runtime): Promise<void> {
+    await super.init(runtime);
+    await this.service.init();
   }
 }
