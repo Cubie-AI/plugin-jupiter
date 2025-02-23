@@ -1,5 +1,5 @@
 node_modules
 logs/
 dist/
-data/ 
+data
 .env

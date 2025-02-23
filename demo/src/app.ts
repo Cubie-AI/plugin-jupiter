@@ -11,18 +11,18 @@ import { OpenAIProvider } from "@maiar-ai/model-openai";
 import { PluginTextGeneration } from "@maiar-ai/plugin-text";
 
 import {
+  JupiterTokenResponse,
+  LoadJupiterTokenParams,
+  PluginJupiter,
+} from "@cubie/plugin-jupiter";
+import {
   PluginTelegram,
   TelegramContext,
   TelegramPlatformContext,
 } from "@maiar-ai/plugin-telegram";
 import { Composer } from "telegraf";
 import { z } from "zod";
-import {
-  JupiterTokenResponse,
-  LoadJupiterTokenParams,
-  PluginJupiter,
-} from "..";
-import { generateTelegramResponse } from "./template.js";
+import { generateTelegramResponse } from "./template";
 
 const logger = createLogger("app");
 

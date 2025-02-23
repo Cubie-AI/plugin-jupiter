@@ -1,0 +1,32 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "pnpm run clean && tsc --project tsconfig.json",
+    "prestart": "pnpm run build",
+    "start": "node --import tsx dist/app.js",
+    "clean": "rm -rf dist data logs"
+  },
+  "dependencies": {
+    "@cubie/plugin-jupiter": "link:/Users/dani/Documents/repos/plugin-jupiter",
+    "@maiar-ai/core": "^0.9.0",
+    "@maiar-ai/memory-sqlite": "^0.9.0",
+    "@maiar-ai/model-openai": "^0.9.0",
+    "@maiar-ai/plugin-telegram": "^0.9.0",
+    "@maiar-ai/plugin-text": "^0.9.0",
+    "dotenv": "^16.4.7",
+    "telegraf": "4.16.3",
+    "tsx": "^4.19.3",
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.13.5",
+    "typescript": "^5.7.3"
+  }
+}

@@ -14,5 +14,5 @@
     "noUncheckedIndexedAccess": true,
     "types": ["node"]
   },
-  "include": ["src/index.ts", "src/demo/app.ts"]
+  "include": ["src/index.ts"]
 }

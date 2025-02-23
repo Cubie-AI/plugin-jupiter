@@ -131,4 +131,33 @@ if (require.main === module) {
 
 ## Demo
 
+### Video
+
 https://github.com/user-attachments/assets/56f3a360-0633-40ed-a48a-e72a52a4c093
+
+### Running the demo
+
+Start by creating an `.env` file with 2 properties
+
+### Configuration
+
+```
+OPEN_API_KEY=
+TELEGRAM_BOT_TOKEN=
+```
+
+### Installation
+
+Next you need to install the dependencies:
+
+```
+pnpm install
+```
+
+### Running the project
+
+Run the project with
+
+```
+pnpm start
+```
