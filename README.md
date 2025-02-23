@@ -128,3 +128,7 @@ if (require.main === module) {
   });
 }
 ```
+
+## Demo
+
+[Using the jupiter plugin](./public/plugin-jupiter-demo.mov)
