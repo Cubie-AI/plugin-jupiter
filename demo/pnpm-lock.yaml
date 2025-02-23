@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@cubie/plugin-jupiter':
-        specifier: link:/Users/dani/Documents/repos/plugin-jupiter
-        version: link:..
+      '@cubie-ai/plugin-jupiter':
+        specifier: 0.1.0
+        version: 0.1.0
       '@maiar-ai/core':
         specifier: ^0.9.0
         version: 0.9.0
@@ -50,6 +50,9 @@ importers:
         version: 5.7.3
 
 packages:
+
+  '@cubie-ai/plugin-jupiter@0.1.0':
+    resolution: {integrity: sha512-ZAOLvztuJWqE/Bwj5k4oO8RcXsV68XcBsxSTOSbaiEObn9YB7XF4xVu52CT/4IhRlxbiR0mo3eltzRQ/osRMow==}
 
   '@esbuild/aix-ppc64@0.25.0':
     resolution: {integrity: sha512-O7vun9Sf8DFjH2UtqK8Ku3LkquL9SZL8OLY1T5NZkA34+wG3OQF7cl4Ql8vdNzM6fzBbYfLaiRLIOZ+2FOCgBQ==}
@@ -201,6 +204,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@maiar-ai/core@0.8.0':
+    resolution: {integrity: sha512-7yid/hvd4CsTg6Un1FtaLquPgIbiMlom2lhk16G16i84dKgZ50hITFgIJGvZQ/PhAsg7APsR0BaZ3Ai3lSZ1hA==}
+
   '@maiar-ai/core@0.9.0':
     resolution: {integrity: sha512-kRwj6IPmx/yRd0gaW0S29eUw6+WOANS9pI7/LH8m711B4U3G+/3M23wssilpn33nsfYCpdakqVybkXFEAd3UZw==}
 
@@ -245,6 +251,9 @@ packages:
   atomic-sleep@1.0.0:
     resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
     engines: {node: '>=8.0.0'}
+
+  axios@1.7.9:
+    resolution: {integrity: sha512-LhLcE7Hbiryz8oMDdDptSrWowmB4Bl6RCt6sIJKpRB4XtVf0iEgewX3au/pJqm+Py1kCASkb/FFKjxQaLtxJvw==}
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -364,6 +373,15 @@ packages:
 
   file-uri-to-path@1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+
+  follow-redirects@1.15.9:
+    resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
 
   form-data-encoder@1.7.2:
     resolution: {integrity: sha512-qfqtYan3rxrnCk1VYaA4H+Ms9xdpPqvLZa6xmMgFvhO32x7/3J/ExcTd6qpxM0vH2GdMI+poehyBZvqfMTto8A==}
@@ -530,6 +548,9 @@ packages:
   process-warning@4.0.1:
     resolution: {integrity: sha512-3c2LzQ3rY9d0hc1emcsHhfT9Jwz0cChib/QN89oME2R451w5fy3f0afAhERFZAwrbDU43wk12d0ORBpDVME50Q==}
 
+  proxy-from-env@1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+
   pump@3.0.2:
     resolution: {integrity: sha512-tUPXtzlGM8FE3P0ZL6DVs/3P58k9nk8/jZeQCurTJylQA8qFYzHFfhBJkuqyE0FifOsQ0uKWekiZ5g8wtr28cw==}
 
@@ -661,6 +682,16 @@ packages:
 
 snapshots:
 
+  '@cubie-ai/plugin-jupiter@0.1.0':
+    dependencies:
+      '@maiar-ai/core': 0.8.0
+      axios: 1.7.9
+      zod: 3.24.1
+    transitivePeerDependencies:
+      - debug
+      - encoding
+      - ws
+
   '@esbuild/aix-ppc64@0.25.0':
     optional: true
 
@@ -736,6 +767,17 @@ snapshots:
   '@esbuild/win32-x64@0.25.0':
     optional: true
 
+  '@maiar-ai/core@0.8.0':
+    dependencies:
+      openai: 4.82.0(zod@3.24.1)
+      pino: 9.6.0
+      pino-pretty: 13.0.0
+      rxjs: 7.8.1
+      zod: 3.24.1
+    transitivePeerDependencies:
+      - encoding
+      - ws
+
   '@maiar-ai/core@0.9.0':
     dependencies:
       openai: 4.82.0(zod@3.24.1)
@@ -810,6 +852,14 @@ snapshots:
   asynckit@0.4.0: {}
 
   atomic-sleep@1.0.0: {}
+
+  axios@1.7.9:
+    dependencies:
+      follow-redirects: 1.15.9
+      form-data: 4.0.2
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
 
   base64-js@1.5.1: {}
 
@@ -937,6 +987,8 @@ snapshots:
   fast-safe-stringify@2.1.1: {}
 
   file-uri-to-path@1.0.0: {}
+
+  follow-redirects@1.15.9: {}
 
   form-data-encoder@1.7.2: {}
 
@@ -1113,6 +1165,8 @@ snapshots:
       tunnel-agent: 0.6.0
 
   process-warning@4.0.1: {}
+
+  proxy-from-env@1.1.0: {}
 
   pump@3.0.2:
     dependencies:

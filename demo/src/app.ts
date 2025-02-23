@@ -14,7 +14,7 @@ import {
   JupiterTokenResponse,
   LoadJupiterTokenParams,
   PluginJupiter,
-} from "@cubie/plugin-jupiter";
+} from "@cubie-ai/plugin-jupiter";
 import {
   PluginTelegram,
   TelegramContext,
