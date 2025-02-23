@@ -1,6 +1,6 @@
 {
   "name": "@cubie-ai/plugin-jupiter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -34,10 +34,10 @@
   "homepage": "https://cubie.fun",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/0xsoc/plugin-jupiter.git"
+    "url": "git+https://github.com/Cubie-AI/plugin-jupiter.git"
   },
   "bugs": {
-    "url": "https://github.com/0xsoc/plugin-jupiter/issues"
+    "url": "https://github.com/Cubie-AI/plugin-jupiter/issues"
   },
   "scripts": {
     "build": "pnpm run clean && tsc --project tsconfig.json",
