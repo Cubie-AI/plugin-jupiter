@@ -131,4 +131,4 @@ if (require.main === module) {
 
 ## Demo
 
-[Using the jupiter plugin](./public/plugin-jupiter-demo.mov)
+[Using the jupiter plugin](./public/demo.mp4)
