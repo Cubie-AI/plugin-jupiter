@@ -1,6 +1,6 @@
 # @cubie/plugin-jupiter
 
-This package is part of the [Cubie](https://cubie.fun) plugin repository for the [Maiar][https://maiar.dev] ecosystem, designed to work seamlessly with `@maiar-ai/core`.
+This package is part of the [Cubie](https://cubie.fun) plugin repository for the (Maiar)[https://maiar.dev] ecosystem, designed to work seamlessly with `@maiar-ai/core`.
 
 ## Documentation
 
@@ -132,6 +132,3 @@ if (require.main === module) {
 ## Demo
 
 https://github.com/user-attachments/assets/56f3a360-0633-40ed-a48a-e72a52a4c093
-
-
-
