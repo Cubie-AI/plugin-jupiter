@@ -13,7 +13,7 @@
     "clean": "rm -rf dist data logs"
   },
   "dependencies": {
-    "@cubie/plugin-jupiter": "0.1.0",
+    "@cubie-ai/plugin-jupiter": "0.1.0",
     "@maiar-ai/core": "^0.9.0",
     "@maiar-ai/memory-sqlite": "^0.9.0",
     "@maiar-ai/model-openai": "^0.9.0",

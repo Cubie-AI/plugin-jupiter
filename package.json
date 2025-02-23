@@ -1,5 +1,5 @@
 {
-  "name": "@cubie/plugin-jupiter",
+  "name": "@cubie-ai/plugin-jupiter",
   "version": "0.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
