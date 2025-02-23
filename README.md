@@ -131,4 +131,7 @@ if (require.main === module) {
 
 ## Demo
 
-[Using the jupiter plugin](./public/demo.mp4)
+https://github.com/user-attachments/assets/56f3a360-0633-40ed-a48a-e72a52a4c093
+
+
+
